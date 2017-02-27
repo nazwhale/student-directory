@@ -44,9 +44,21 @@ def first_letter(students)
   end
 end
 
+def shortys(students)
+  puts "Students with short names:"
+  count = 1
+  students.each do |s|
+    if s[:name].gsub(" ","").length < 12
+      puts "#{count}. #{s[:name]} (#{s[:cohort]} cohort)"
+      count +=1
+    end
+  end
+end
+
+
 students = input_students
 #nothing happens until we call the methods
 print_header
 print(students)
 print_footer(students)
-first_letter(students)
+shortys(students)
