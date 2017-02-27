@@ -15,7 +15,6 @@ def input_students
   end
   #return array of students
   students
-
 end
 
 def print_header
@@ -24,7 +23,11 @@ def print_header
 end
 
 def print(students)
-  students.each_with_index {|s,i| puts "#{i+1}. #{s[:name]} (#{s[:cohort]} cohort)"}
+  count = 0
+  until count == students.length
+    puts "#{count+1}. #{students[count][:name]} (#{students[count][:cohort]} cohort)"
+    count +=1
+  end
 end
 
 def print_footer(students)
@@ -61,4 +64,3 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
-shortys(students)
