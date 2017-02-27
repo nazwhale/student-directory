@@ -1,3 +1,4 @@
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -22,8 +23,9 @@ def input_students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  lineWidth = 50
+  puts "The students of Villains Academy".center(lineWidth)
+  puts "-------------".center(lineWidth)
 end
 
 def print(students)
@@ -35,7 +37,9 @@ def print(students)
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  lineWidth = 50
+  puts "-------------".center(lineWidth)
+  puts "Overall, we have #{students.count} great students".center(lineWidth)
 end
 
 def first_letter(students)
