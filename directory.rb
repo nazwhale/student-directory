@@ -1,4 +1,4 @@
-
+#In the input_students method the cohort value is hard-coded. How can you ask for both the name and the cohort? What if one of the values is empty? Can you supply a default value? The input will be given to you as a string? How will you convert it to a symbol? What if the user makes a typo?
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -6,14 +6,31 @@ def input_students
   students = []
   #get first name
   name = gets.chomp
+  months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
   #while name is not empty, repeat this code
   while !name.empty? do
     #add student hash to array
+    puts "Enter cohort month"
+    puts "To use default value, just hit return"
+    cohort = gets.chomp
+    #set default value
+    if cohort == ""
+      cohort = "november"
+      puts "No month entered. Cohort set to default month (november)"
+    end
+    #check for typos
+    until months.include? cohort.downcase
+      puts "Value entered is not a month"
+      puts "Enter cohort month"
+      cohort = gets.chomp
+    end
+    #convert cohort input to symbol
+    cohort = cohort.to_s
     puts "Enter nationality"
     nat = gets.chomp.capitalize
     puts "Enter height (cm)"
     height = gets.chomp
-    students << {name: name, cohort: :november, nationality: nat, height: height}
+    students << {name: name, cohort: cohort, nationality: nat, height: height}
     puts "Now we have #{students.count} students"
     #get another name from the user
     name = gets.chomp
