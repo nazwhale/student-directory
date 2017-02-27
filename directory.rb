@@ -15,6 +15,7 @@ def input_students
   end
   #return array of students
   students
+
 end
 
 def print_header
@@ -23,11 +24,24 @@ def print_header
 end
 
 def print(students)
-  students.each {|s| puts "#{s[:name]} (#{s[:cohort]} cohort)"}
+  students.each_with_index {|s,i| puts "#{i+1}. #{s[:name]} (#{s[:cohort]} cohort)"}
 end
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
+end
+
+def first_letter(students)
+  puts "Select first letter to sort students by:"
+  letter = gets.chomp
+  puts "Students whos name begins with '#{letter}':"
+  count = 1
+  students.each do |s|
+    if s[:name][0] == letter
+      puts "#{count}. #{s[:name]} (#{s[:cohort]} cohort)"
+      count +=1
+    end
+  end
 end
 
 students = input_students
@@ -35,3 +49,4 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
+first_letter(students)
