@@ -4,14 +4,15 @@ def input_students
   #create an empty array
   students = []
   #get first name
-  name = gets.chomp
+  name = gets.gsub("\n","")
   cohorts = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   #while name is not empty, repeat this code
   while !name.empty? do
     #add student hash to array
     puts "Enter cohort month"
     puts "To use default value, just hit return"
-    cohort = gets.chomp.capitalize
+    cohort = gets.gsub("\n","")
+    cohort = cohort.capitalize
     #set default value
     if cohort == ""
       cohort = "November"
@@ -21,14 +22,14 @@ def input_students
     until cohorts.include? cohort
       puts "Value entered is not a month"
       puts "Enter cohort month"
-      cohort = gets.chomp
+      cohort = gets.gsub("\n","")
     end
     #convert cohort input to symbol
     cohort = cohort.to_s
     puts "Enter nationality"
-    nat = gets.chomp.capitalize
+    nat = gets.gsub("\n","").capitalize
     puts "Enter height (cm)"
-    height = gets.chomp
+    height = gets.gsub("\n","")
     students << {name: name, cohort: cohort, nationality: nat, height: height}
     if students.count == 1
       puts "Now we have 1 student"
@@ -36,7 +37,7 @@ def input_students
       puts "Now we have #{students.count} students"
     end
     #get another name from the user
-    name = gets.chomp
+    name = gets.gsub("\n","")
   end
   #return array of students
   students
@@ -68,7 +69,7 @@ end
 
 def first_letter(students)
   puts "Select first letter to sort students by:"
-  letter = gets.chomp
+  letter = gets.gsub("\n","")
   puts "Students whos name begins with '#{letter}':"
   count = 1
   students.each do |s|
