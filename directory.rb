@@ -4,14 +4,14 @@ def input_students
   #create an empty array
   students = []
   #get first name
-  name = gets.gsub("\n","")
+  name = gets.chomp
   cohorts = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   #while name is not empty, repeat this code
   while !name.empty? do
     #add student hash to array
     puts "Enter cohort month"
     puts "To use default value, just hit return"
-    cohort = gets.gsub("\n","")
+    cohort = gets.chomp
     cohort = cohort.capitalize
     #set default value
     if cohort == ""
@@ -22,14 +22,14 @@ def input_students
     until cohorts.include? cohort
       puts "Value entered is not a month"
       puts "Enter cohort month"
-      cohort = gets.gsub("\n","")
+      cohort = gets.chomp
     end
     #convert cohort input to symbol
     cohort = cohort.to_s
     puts "Enter nationality"
-    nat = gets.gsub("\n","").capitalize
+    nat = gets.chomp.capitalize
     puts "Enter height (cm)"
-    height = gets.gsub("\n","")
+    height = gets.chomp
     students << {name: name, cohort: cohort, nationality: nat, height: height}
     if students.count == 1
       puts "Now we have 1 student"
@@ -37,7 +37,7 @@ def input_students
       puts "Now we have #{students.count} students"
     end
     #get another name from the user
-    name = gets.gsub("\n","")
+    name = gets.chomp
   end
   #return array of students
   students
@@ -69,7 +69,7 @@ end
 
 def first_letter(students)
   puts "Select first letter to sort students by:"
-  letter = gets.gsub("\n","")
+  letter = gets.chomp
   puts "Students whos name begins with '#{letter}':"
   count = 1
   students.each do |s|
@@ -107,6 +107,10 @@ end
 students = input_students
 #nothing happens until we call the methods
 print_header
-print(students)
-print_by_cohorts(students)
-print_footer(students)
+if students.count == 0
+  puts "There are currently no students at Villains Academy"
+else
+  print(students)
+  print_by_cohorts(students)
+  print_footer(students)
+end
