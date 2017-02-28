@@ -3,8 +3,8 @@
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list of students from students.csv"
+  puts "3. Save the list to a file"
+  puts "4. Load the list of students from a file"
   puts "9. Exit"
 end
 
@@ -25,10 +25,14 @@ def process(selection)
       show_students
     when "3"
       selection_message(selection)
-      save_students
+      puts "Save list to which file?"
+      filename = gets.chomp
+      save_students(filename)
     when "4"
       selection_message(selection)
-      load_students
+      puts "Load list from which file?"
+      filename = gets.chomp
+      load_students(filename)
     when "9"
       selection_message(selection)
       exit
@@ -86,10 +90,8 @@ def print_footer
   puts "-------------"
 end
 
-def save_students
-  #open file for writing
-  file = File.open("students.csv", "w")
-  #iterate over array of students
+def save_students(filename="students.csv")
+  file = File.open(filename, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
@@ -118,7 +120,7 @@ def try_load_students
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
   else
-    puts "Sorry, #{filenmae} doesn't exist."
+    puts "Sorry, #{filename} doesn't exist."
     exit
   end
 end
