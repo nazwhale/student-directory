@@ -1,4 +1,3 @@
-#In the input_students method the cohort value is hard-coded. How can you ask for both the name and the cohort? What if one of the values is empty? Can you supply a default value? The input will be given to you as a string? How will you convert it to a symbol? What if the user makes a typo?
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -6,20 +5,20 @@ def input_students
   students = []
   #get first name
   name = gets.chomp
-  months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+  cohorts = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   #while name is not empty, repeat this code
   while !name.empty? do
     #add student hash to array
     puts "Enter cohort month"
     puts "To use default value, just hit return"
-    cohort = gets.chomp
+    cohort = gets.chomp.capitalize
     #set default value
     if cohort == ""
-      cohort = "november"
-      puts "No month entered. Cohort set to default month (november)"
+      cohort = "November"
+      puts "No month entered. Cohort set to default month (November)"
     end
     #check for typos
-    until months.include? cohort.downcase
+    until cohorts.include? cohort
       puts "Value entered is not a month"
       puts "Enter cohort month"
       cohort = gets.chomp
@@ -83,9 +82,22 @@ def shortys(students)
   end
 end
 
+def print_by_cohorts(students)
+  #get list of existing cohorts
+  months = []
+  students.each { |student| months << student[:cohort] }
+  months = months.uniq
+  #iterate over it and only print the students from that cohort.
+  months.each do |cohort|
+    puts "#{cohort}:"
+    students.each {|student| puts student[:name] if student[:cohort] == cohort}
+  end
+end
+
 
 students = input_students
 #nothing happens until we call the methods
 print_header
 print(students)
+print_by_cohorts(students)
 print_footer(students)
