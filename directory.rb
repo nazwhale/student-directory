@@ -30,7 +30,11 @@ def input_students
     puts "Enter height (cm)"
     height = gets.chomp
     students << {name: name, cohort: cohort, nationality: nat, height: height}
-    puts "Now we have #{students.count} students"
+    if students.count == 1
+      puts "Now we have 1 student"
+    else
+      puts "Now we have #{students.count} students"
+    end
     #get another name from the user
     name = gets.chomp
   end
@@ -55,7 +59,11 @@ end
 def print_footer(students)
   lineWidth = 50
   puts "-------------".center(lineWidth)
-  puts "Overall, we have #{students.count} great students".center(lineWidth)
+  if students.count == 1
+    puts "Overall, we have 1 great student".center(lineWidth)
+  else
+    puts "Overall, we have #{students.count} great students".center(lineWidth)
+  end
 end
 
 def first_letter(students)
