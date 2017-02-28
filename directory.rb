@@ -18,19 +18,31 @@ end
 def process(selection)
   case selection
     when "1"
+      selection_message(selection)
       input_students
     when "2"
+      selection_message(selection)
       show_students
     when "3"
+      selection_message(selection)
       save_students
     when "4"
+      selection_message(selection)
       load_students
     when "9"
+      selection_message(selection)
       exit
     else
       puts "I don't know what you meant, try again"
   end
 end
+
+def selection_message(selection)
+  puts "----------"
+  puts "Option #{selection} selected"
+  puts "----------"
+end
+
 
 def input_students
   puts "Please enter the names of the students"
